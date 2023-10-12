@@ -25,7 +25,7 @@ public class AccountPageTest extends TestBase {
 
 	@Test
 	public void validateUserCanUpdatePersonalInfo() {
-		accountPage = loginPage.SubmitLogin("peter@email.com", "peter123");
+		accountPage = loginPage.SubmitLogin("zenduo@email.com", "zenduo@123");
 		editPage = accountPage.clickEditInfoLink();
 		editPage.enterFName("Cheater");
 		accountPage = editPage.clickSubmitBtn();

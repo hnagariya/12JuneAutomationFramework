@@ -26,7 +26,7 @@ public class TestBase {
 	public static WebDriver wd;
 
 	private final String DEFAULT_BROWSER = "CHROME";
-	private final String URL = "https://naveenautomationlabs.com/opencart/index.php?route=account/login";
+	private final String URL = "https://www.w3schools.com/html/html_tables.asp";
 
 	public static Logger logger;
 	public WebdriverEvents events;
