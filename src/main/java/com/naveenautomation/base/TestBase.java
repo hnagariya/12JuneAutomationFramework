@@ -18,6 +18,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.BeforeClass;
 
 import com.naveenautomation.Utils.WebdriverEvents;
+import com.naveenautomation.browsers.Browser;
+import com.naveenautomation.environment.Environment;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -25,8 +27,8 @@ public class TestBase {
 
 	public static WebDriver wd;
 
-	private final String DEFAULT_BROWSER = "CHROME";
-	private final String URL = "https://www.w3schools.com/html/html_tables.asp";
+	private final Browser DEFAULT_BROWSER = Browser.CHROME;
+	private final Environment URL = Environment.PROD;
 
 	public static Logger logger;
 	public WebdriverEvents events;
@@ -42,13 +44,13 @@ public class TestBase {
 
 	public void intialisation() {
 		switch (DEFAULT_BROWSER) {
-		case "CHROME":
+		case CHROME:
 			wd = WebDriverManager.chromedriver().create();
 			break;
-		case "EDGE":
+		case EDGE:
 			wd = WebDriverManager.edgedriver().create();
 			break;
-		case "FIREFOX":
+		case FIREFOX:
 			wd = WebDriverManager.firefoxdriver().create();
 			break;
 		default:
@@ -65,7 +67,7 @@ public class TestBase {
 		// Assigning back the value to Web driver
 		wd = e_driver;
 
-		wd.get(URL);
+		wd.get(URL.getUrl());
 
 		wd.manage().window().maximize();
 
@@ -76,22 +78,5 @@ public class TestBase {
 
 	public void tearDown() {
 		wd.quit();
-	}
-
-	public static void failedTestScreenShot(String testMethodName) {
-
-		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-
-		File screenShotFfile = ((TakesScreenshot) wd).getScreenshotAs(OutputType.FILE);
-
-		try {
-			FileUtils.copyFile(screenShotFfile,
-					new File("./FailedTestCasesScreenShot\\" + "_" + testMethodName + "_" + timeStamp + ".jpg"));
-		} catch (IOException e) {
-
-			System.out.println("................................The IO Exception is ...... " + e);
-			e.printStackTrace();
-		}
-
 	}
 }

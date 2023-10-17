@@ -26,7 +26,7 @@ public class ExtentReportListener extends TestListenerAdapter {
 
 	@Override
 	public void onStart(ITestContext testContext) {
-		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+		String timeStamp = Utils.getCurrentDateTimeStamp();
 		String repName = "My Account Portal " + " ------" + timeStamp + ".html";
 
 		htmlReporter = new ExtentHtmlReporter(
