@@ -20,6 +20,7 @@ import org.testng.annotations.BeforeClass;
 import com.naveenautomation.Utils.WebdriverEvents;
 import com.naveenautomation.browsers.Browser;
 import com.naveenautomation.environment.Environment;
+import com.naveenautomation.proxydriver.ProxyDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -45,7 +46,7 @@ public class TestBase {
 	public void intialisation() {
 		switch (DEFAULT_BROWSER) {
 		case CHROME:
-			wd = WebDriverManager.chromedriver().create();
+			wd = new ProxyDriver(WebDriverManager.chromedriver().create());
 			break;
 		case EDGE:
 			wd = WebDriverManager.edgedriver().create();
