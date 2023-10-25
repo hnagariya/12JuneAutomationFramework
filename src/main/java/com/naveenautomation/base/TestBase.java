@@ -58,17 +58,16 @@ public class TestBase {
 			throw new IllegalArgumentException();
 		}
 
-		// Wrap the instance
-		e_driver = new EventFiringWebDriver(wd);
-
-		// Events which need to be captured
-		events = new WebdriverEvents();
-		e_driver.register(events);
-
-		// Assigning back the value to Web driver
-		wd = e_driver;
-
-		wd.get(URL.getUrl());
+		/*
+		 * // Wrap the instance e_driver = new EventFiringWebDriver(wd);
+		 * 
+		 * // Events which need to be captured events = new WebdriverEvents();
+		 * e_driver.register(events);
+		 * 
+		 * // Assigning back the value to Web driver wd = e_driver;
+		 * 
+		 * wd.get(URL.getUrl());
+		 */
 
 		wd.manage().window().maximize();
 

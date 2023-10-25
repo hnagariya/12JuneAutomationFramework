@@ -28,6 +28,7 @@ public class EditPage extends TestBase {
 	WebElement submitBtn;
 
 	public void enterFName(String name) {
+		firstNameInput.clear();
 		firstNameInput.sendKeys(name);
 	}
 
@@ -45,7 +46,7 @@ public class EditPage extends TestBase {
 
 	public AccountPage clickSubmitBtn() {
 		submitBtn.click();
-		return new AccountPage();
+		return null;
 	}
 
 }

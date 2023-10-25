@@ -189,11 +189,11 @@ public class ProxyDriver implements WebDriver, JavascriptExecutor, TakesScreensh
 	}
 
 	public void acceptAlert() {
-		new WebDriverWait(this, 10).until(ExpectedConditions.alertIsPresent()).accept();
+		new WebDriverWait(driver, 10).until(ExpectedConditions.alertIsPresent()).accept();
 	}
 
 	public void dismissAlert() {
-		new WebDriverWait(this, 10).until(ExpectedConditions.alertIsPresent()).dismiss();
+		new WebDriverWait(driver, 10).until(ExpectedConditions.alertIsPresent()).dismiss();
 	}
 
 }

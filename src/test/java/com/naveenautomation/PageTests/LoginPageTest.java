@@ -18,7 +18,7 @@ public class LoginPageTest extends TestBase {
 	@BeforeMethod
 	public void launch() {
 		intialisation();
-		loginPage = new LoginPage();
+		loginPage = new LoginPage(wd,false).get();
 		
 	}
 

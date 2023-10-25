@@ -1,39 +1,42 @@
 package com.naveenautomation.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.naveenautomation.base.TestBase;
+import com.naveenautomation.proxydriver.ProxyDriver;
 
-public class AccountPage extends TestBase {
+public class AccountPage extends Page {
 
-	public AccountPage() {
-		PageFactory.initElements(wd, this);
+	private static final String PAGE_URL = "opencart/index.php?route=account/account";
+
+	public AccountPage(WebDriver wd, boolean waitForPageToLoad) {
+		super(wd, waitForPageToLoad);
+		// TODO Auto-generated constructor stub
 	}
 
-	@FindBy(css = "#content>h2:first-of-type")
-	WebElement myAccountText;
+	private static By myAccountText=By.cssSelector("#content>h2:first-of-type");
+	private static By acccountInfoUpdateSuccessMessage=By.cssSelector("div.alert-success");
+	private static By editYourInfoLink= By.cssSelector("//a[text()='Edit your account information']");
 
-	@FindBy(css = "div.alert-success")
-	WebElement acccountInfoUpdateSuccessMessage;
-
-	// Success: Your account has been successfully updated.
-
-	@FindBy(xpath = "//a[text()='Edit your account information']")
-	WebElement editYourInfoLink;
 
 	public String getMyAccountText() {
-		return myAccountText.getText();
+		return ((ProxyDriver)wd).getText(myAccountText);
 	}
 
-	public EditPage clickEditInfoLink() {
-		editYourInfoLink.click();
-		return new EditPage();
+	@Override
+	protected void isLoaded() {
+		if (!urlContains(wd.getCurrentUrl())) {
+			throw new Error();
+		}
 	}
 
-	public String getSuccessMessage() {
-		return acccountInfoUpdateSuccessMessage.getText();
+	@Override
+	protected String getPageUrl() {
+		return getDomain() + PAGE_URL;
 	}
 
 }
