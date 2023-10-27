@@ -196,4 +196,9 @@ public class ProxyDriver implements WebDriver, JavascriptExecutor, TakesScreensh
 		new WebDriverWait(driver, 10).until(ExpectedConditions.alertIsPresent()).dismiss();
 	}
 
+	public void click(WebElement element) {
+		new WebDriverWait(this, 10).until(ExpectedConditions.elementToBeClickable(element)).click();
+		;
+	}
+
 }

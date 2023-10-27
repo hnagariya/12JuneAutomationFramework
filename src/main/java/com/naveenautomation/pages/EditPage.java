@@ -1,52 +1,51 @@
 package com.naveenautomation.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.naveenautomation.base.TestBase;
+import com.naveenautomation.proxydriver.ProxyDriver;
 
-public class EditPage extends TestBase {
+public class EditPage extends Page {
 
-	public EditPage() {
-		PageFactory.initElements(wd, this);
+	public EditPage(WebDriver wd, boolean waitForPageToLoad) {
+		super(wd, waitForPageToLoad);
 	}
 
-	@FindBy(id = "input-firstname")
-	WebElement firstNameInput;
-
-	@FindBy(id = "input-lastname")
-	WebElement lastNameInput;
-
-	@FindBy(id = "input-email")
-	WebElement emailInput;
-
-	@FindBy(id = "input-telephone")
-	WebElement telePhoneInput;
-
-	@FindBy(css = "input[value='Continue']")
-	WebElement submitBtn;
+	private static By firstNameInput = By.id("input-firstname");
+	private static By lastNameInput = By.id("input-lastname");
+	private static By emailInput = By.id("input-email");
+	private static By telePhoneInput = By.id("input-telephone");
+	private static By submitBtn = By.cssSelector("input[value='Continue']");
 
 	public void enterFName(String name) {
-		firstNameInput.clear();
-		firstNameInput.sendKeys(name);
+		((ProxyDriver) wd).sendKeys(firstNameInput, name);
 	}
 
 	public void enterLName(String lname) {
-		lastNameInput.sendKeys(lname);
+		((ProxyDriver) wd).sendKeys(lastNameInput, lname);
 	}
 
 	public void enterEmail(String email) {
-		emailInput.sendKeys(email);
+		((ProxyDriver) wd).sendKeys(emailInput, email);
 	}
 
 	public void enterTelephone(String number) {
-		telePhoneInput.sendKeys(number);
+		((ProxyDriver) wd).sendKeys(telePhoneInput, number);
 	}
 
 	public AccountPage clickSubmitBtn() {
-		submitBtn.click();
+		((ProxyDriver) wd).click(submitBtn);
 		return null;
+	}
+
+	@Override
+	protected void isLoaded() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

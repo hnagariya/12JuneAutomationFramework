@@ -1,5 +1,6 @@
 package com.naveenautomation.pages;
 
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -8,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+
 
 public abstract class GeneralPage extends LoadableComponent<GeneralPage> {
 
@@ -73,4 +76,48 @@ public abstract class GeneralPage extends LoadableComponent<GeneralPage> {
 	protected abstract void isLoaded();
 
 	protected abstract String getPageUrl();
+	
+	@SafeVarargs
+	public final GeneralPage waitForPageToLoad(final Class<? extends GeneralPage>... pagestoWaitFor) {
+
+		return waitForPageToLoad(30,pagestoWaitFor);
+	}
+
+	
+
+	@SafeVarargs
+	protected final GeneralPage waitForPageToLoad(int timeForLoad,
+			final Class<? extends GeneralPage>... pagestoWaitFor) {
+
+		return new WebDriverWait(wd, timeForLoad).until(new ExpectedCondition<GeneralPage>() {
+
+			@Override
+			public GeneralPage apply(WebDriver input) {
+
+				for (Class<? extends GeneralPage> page : pagestoWaitFor) {
+
+					try {
+						GeneralPage pg = page.getConstructor(WebDriver.class, Boolean.TYPE).newInstance(wd, true);
+						return pg;
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						e.printStackTrace();
+					} catch (NoSuchMethodException e) {
+						e.printStackTrace();
+					} catch (SecurityException e) {
+						e.printStackTrace();
+					}
+
+				}
+				return null;
+
+			}
+		});
+
+	}
 }

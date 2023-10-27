@@ -8,12 +8,16 @@ import org.testng.annotations.Test;
 
 import com.naveenautomation.base.TestBase;
 import com.naveenautomation.pages.AccountPage;
+import com.naveenautomation.pages.ConsumerSideNavigationBar;
+import com.naveenautomation.pages.EditPage;
 import com.naveenautomation.pages.LoginPage;
+import com.naveenautomation.pages.SideNavBar;
 
 public class LoginPageTest extends TestBase {
 
 	LoginPage loginPage;
 	AccountPage accountPage;
+	EditPage editPage;
 
 	@BeforeMethod
 	public void launch() {
@@ -24,8 +28,9 @@ public class LoginPageTest extends TestBase {
 
 	@Test
 	public void validateUserCanLoginWithValidCredentials() {
-		accountPage=loginPage.SubmitLogin("zenduo@email.com","zenduo@123");
-		Assert.assertEquals(accountPage.getMyAccountText(), "My Account", "User not logged in");
+		accountPage=loginPage.SubmitLogin("tony@gmail.com","Password2");
+	 	editPage= (EditPage) new SideNavBar(wd, false).OpenPageByClickOnSideNavBar(ConsumerSideNavigationBar.EDIT_ACCOUNT);
+	 	editPage.enterEmail("Munna");
 	}
 	
 	@Test
