@@ -72,8 +72,6 @@ public class TestBase {
 		wd.manage().window().maximize();
 
 		wd.manage().deleteAllCookies();
-
-		wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	public void tearDown() {

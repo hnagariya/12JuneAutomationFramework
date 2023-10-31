@@ -8,6 +8,9 @@ public abstract class Page extends GeneralPage {
 
 	public Page(WebDriver wd, boolean waitForPageToLoad) {
 		super(wd, waitForPageToLoad);
+		if(waitForPageToLoad) {
+			this.waitForPageToLoad();
+		}
 	}
 
 	public String getDomain() {
@@ -16,8 +19,12 @@ public abstract class Page extends GeneralPage {
 
 	@Override
 	protected String getPageUrl() {
-		// TODO Auto-generated method stub
 		return getDomain();
+	}
+	
+	
+	private void waitForPageToLoad() {
+	this.isLoaded();
 	}
 
 }

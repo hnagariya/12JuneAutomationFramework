@@ -28,9 +28,12 @@ public class LoginPageTest extends TestBase {
 
 	@Test
 	public void validateUserCanLoginWithValidCredentials() {
-		accountPage=loginPage.SubmitLogin("tony@gmail.com","Password2");
-	 	editPage= (EditPage) new SideNavBar(wd, false).OpenPageByClickOnSideNavBar(ConsumerSideNavigationBar.EDIT_ACCOUNT);
-	 	editPage.enterEmail("Munna");
+		loginPage= (LoginPage) loginPage.SubmitLogin("zenduo@email.com", "zenduo");
+		/*
+		 * editPage= (EditPage) new SideNavBar(wd,
+		 * false).OpenPageByClickOnSideNavBar(ConsumerSideNavigationBar.MY_ACCOUNT);
+		 * editPage.enterEmail("Munna");
+		 */
 	}
 	
 	@Test

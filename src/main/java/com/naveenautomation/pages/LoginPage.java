@@ -7,7 +7,7 @@ import com.naveenautomation.proxydriver.ProxyDriver;
 
 public class LoginPage extends Page {
 
-	public String PAGE_URL = "/opencart/index.php?route=account/login";
+	private static final String PAGE_URL = "/opencart/index.php?route=account/login";
 
 	public LoginPage(WebDriver wd, boolean waitForPageToLoad) {
 		super(wd, waitForPageToLoad);
@@ -26,11 +26,11 @@ public class LoginPage extends Page {
 		((ProxyDriver) wd).sendKeys(pwdInput, password);
 	}
 
-	public AccountPage SubmitLogin(String email, String password) {
+	public GeneralPage SubmitLogin(String email, String password) {
 		enterEmail(email);
 		enterPassword(password);
 		((ProxyDriver) wd).click(loginBtn);
-		return new AccountPage(wd, true);
+		return this.waitForPageToLoad(AccountPage.class,LoginPage.class);
 	}
 
 	public String getAlertText() {

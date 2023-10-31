@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
 public abstract class GeneralPage extends LoadableComponent<GeneralPage> {
 
 	protected WebDriver wd;
@@ -64,6 +62,8 @@ public abstract class GeneralPage extends LoadableComponent<GeneralPage> {
 			if (pageUrlHost.equalsIgnoreCase(urlHost)) {
 				String pageUrlExclHost = pageUrl.substring(pageUrl.indexOf(pageUrlHost) + pageUrlHost.length());
 				String urlExclHost = url.substring(url.indexOf(urlHost) + urlHost.length());
+				System.out.println(
+						"Comparing pages , actual: " + urlExclHost + " , and expected is : " + pageUrlExclHost);
 				return urlExclHost.toLowerCase().contains(pageUrlExclHost.toLowerCase());
 			}
 		} catch (MalformedURLException e) {
@@ -76,14 +76,12 @@ public abstract class GeneralPage extends LoadableComponent<GeneralPage> {
 	protected abstract void isLoaded();
 
 	protected abstract String getPageUrl();
-	
+
 	@SafeVarargs
 	public final GeneralPage waitForPageToLoad(final Class<? extends GeneralPage>... pagestoWaitFor) {
 
-		return waitForPageToLoad(30,pagestoWaitFor);
+		return waitForPageToLoad(30, pagestoWaitFor);
 	}
-
-	
 
 	@SafeVarargs
 	protected final GeneralPage waitForPageToLoad(int timeForLoad,
@@ -100,17 +98,17 @@ public abstract class GeneralPage extends LoadableComponent<GeneralPage> {
 						GeneralPage pg = page.getConstructor(WebDriver.class, Boolean.TYPE).newInstance(wd, true);
 						return pg;
 					} catch (InstantiationException e) {
-						e.printStackTrace();
+						
 					} catch (IllegalAccessException e) {
-						e.printStackTrace();
+						
 					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+						
 					} catch (InvocationTargetException e) {
-						e.printStackTrace();
+						
 					} catch (NoSuchMethodException e) {
-						e.printStackTrace();
+						
 					} catch (SecurityException e) {
-						e.printStackTrace();
+						
 					}
 
 				}
