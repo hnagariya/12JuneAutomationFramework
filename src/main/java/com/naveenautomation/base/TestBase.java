@@ -67,14 +67,19 @@ public class TestBase {
 
 		// Assigning back the value to Web driver wd = e_driver;
 
-		
-
 		wd.manage().window().maximize();
 
 		wd.manage().deleteAllCookies();
 	}
 
 	public void tearDown() {
-		wd.quit();
+		try {
+			wd.quit();
+		} finally
+
+		{
+			wd.quit();
+		}
+
 	}
 }
