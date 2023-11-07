@@ -25,12 +25,7 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.automatioPractise.www</groupId>
-			<artifactId>14AugBatch</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
+	
 
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
